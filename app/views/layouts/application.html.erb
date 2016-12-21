@@ -10,12 +10,6 @@
 
 <%= render 'layouts/nav' %>
 
-<% if current_user %>
-  Signed in as <%= current_user.username %> | <%= link_to "Logout", '/logout' %>
-<% else %>
-  <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', signup_path %>
-<% end %>
-
 <% flash.each do |key, value| %>
     <div class="text-center <%= flash_class(key) %>">
       <%= value %>
