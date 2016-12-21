@@ -1,2 +1,8 @@
 this is <%= @user.username %>'s' profile
 he is a <%= @user.role %>
+
+<% if @user.photo.file.nil? %>
+  <p>this user did not upload any profile photo</p>
+<% else %>
+  <%= image_tag @user.photo.url %>
+<% end %>
