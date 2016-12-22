@@ -11,10 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161221084239) do
+ActiveRecord::Schema.define(version: 20161222011827) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ads", force: :cascade do |t|
+    t.string   "category"
+    t.json     "photos"
+    t.string   "condition"
+    t.string   "ad_title"
+    t.text     "description"
+    t.decimal  "price"
+    t.string   "item_location"
+    t.string   "item_area"
+    t.string   "seller_type"
+    t.string   "phone_number"
+    t.integer  "user_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "ads", ["user_id"], name: "index_ads_on_user_id", using: :btree
 
   create_table "authentications", force: :cascade do |t|
     t.string   "uid"
@@ -35,4 +53,5 @@ ActiveRecord::Schema.define(version: 20161221084239) do
     t.datetime "updated_at",                  null: false
   end
 
+  add_foreign_key "ads", "users"
 end

@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:create, :show, :edit, :update, :destroy]
 
+  resources :ads
+
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/auth/facebook", as: "facebook_sign_in"
   get '/signup' => 'users#new'
