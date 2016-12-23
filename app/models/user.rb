@@ -3,8 +3,10 @@ class User < ActiveRecord::Base
   has_many :authentications, :dependent => :destroy
   has_many :ads, :dependent => :destroy
   mount_uploader :photo, PhotoUploader
-  validates :email, uniqueness: true, presence: true
+  validates :email, uniqueness: true, presence: true, format: { with: /.+@.+\..+/i }
   validates :username, uniqueness: true, presence: true
+  validates :password, presence: true, length: { in: 4..20 }
+  validates :password_confirmation, presence: true
 
   def self.create_with_auth_and_hash(authentication,auth_hash)
     create! do |u|

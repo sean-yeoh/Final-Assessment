@@ -66,8 +66,6 @@ gem 'will_paginate-bootstrap'
 
 group :development, :test do
   gem 'rspec-rails', '~> 3.5'
-end
-
-group :development, :test do
+  gem 'capybara'
   gem 'shoulda-matchers', '~> 3.1'
 end
