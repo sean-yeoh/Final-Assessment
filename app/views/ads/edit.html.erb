@@ -1,1 +1,9 @@
-edit.html.erb
+<div class="row">
+  <div class="col-md-offset-2 col-md-2" style="line-height: 56px;">
+    <%= link_to 'Back', ad_path(@ad), class: 'btn btn-default' %>
+  </div>
+  <div class="col-md-5 text-center">
+    <h3>Edit ad</h3>
+  </div>
+</div>
+<%= render 'form', :ad => @ad %>

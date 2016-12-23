@@ -1,8 +1,33 @@
-this is <%= @user.username %>'s' profile
-he is a <%= @user.role %>
+<div class="row" style="background-color: #e0e0d1">
+  <div class="col-md-12 text-center">
+    <% if @user.photo.file.nil? %>
+        <%= image_tag("avatar_placeholder.png", size: '250x250', id: "user-pic", class: 'img-responsive center-block user-pic')%>
+        <% if @user == current_user || current_user.admin? %>
+          <p>Add a profile pic now!</p>
+        <% end %>
+      <% else %>
+        <%= image_tag(@user.photo.url.to_s, alt: "#{@user.email}'s Avatar", class: 'img-responsive center-block user-pic', id: "user-pic", size: "250x250") %><br>
+      <% end %>
+  </div>
 
-<% if @user.photo.file.nil? %>
-  <p>this user did not upload any profile photo</p>
-<% else %>
-  <%= image_tag @user.photo.url %>
-<% end %>
+  <div class="col-md-12 text-center">
+    <p class="user-profile-name">
+      <b><%= @user.username %></b>
+      <% if @user == current_user || current_user.admin? %>
+        <%= link_to "Edit Profile", edit_user_path, class: "btn btn-primary" %>
+      <% end %>
+    </p>
+  </div>
+
+  <div class="col-md-12 user-detail">
+    <p><span class="glyphicon glyphicon-envelope"></span> <%= @user.email%></p>
+  </div>
+
+  <div class="col-md-12 user-detail">
+    <p><span class="glyphicon glyphicon-user"></span> <%= @user.role%></p>
+  </div>
+
+  <div class="col-md-12 user-detail">
+    <p><span class="glyphicon glyphicon-time"></span> <%= @user.created_at.strftime("Joined in %b %Y") %></p>
+  </div>
+</div>

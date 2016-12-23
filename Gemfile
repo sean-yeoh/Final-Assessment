@@ -49,6 +49,7 @@ end
 
 # for bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
+gem "font-awesome-rails"
 
 gem 'figaro'
 
@@ -56,3 +57,17 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
+
+# for ajax upload
+gem 'remotipart', '~> 1.2'
+
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap'
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+end
+
+group :development, :test do
+  gem 'shoulda-matchers', '~> 3.1'
+end

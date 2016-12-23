@@ -1,1 +1,96 @@
-index.html.erb
+<div class="search-form">
+  <%= form_tag("/ads", method: "get") do %>
+    <div class="row">
+      <div class="col-md-9">
+        <div class="row">
+          <div class="col-md-4">
+            <%= label_tag :item_location, "Location", class: 'bold-it' %>
+            <%= select_tag :item_location, options_for_select(@locations), class: 'form-control', include_blank: true %>
+          </div>
+
+          <div class="col-md-4">
+            <%= label_tag :category, nil, class: 'bold-it' %>
+            <%= select_tag :category, options_for_select(@categories), class: 'form-control', include_blank: true %>
+          </div>
+
+          <div class="col-md-4">
+            <%= label_tag :ad_title, nil, class: 'bold-it' %>
+            <%= text_field_tag :ad_title, nil, class: 'form-control', placeholder: 'Enter product name or brand' %>
+          </div>
+
+          <div class='col-md-4'>
+            <%= label_tag :min_price, "Minimum Price", class: 'bold-it' %>
+            <%= number_field_tag :min_price, nil, class: 'form-control' %>
+          </div>
+
+          <div class='col-md-4'>
+            <%= label_tag :max_price, "Maximum Price", class: 'bold-it' %>
+            <%= number_field_tag :max_price, nil, class: 'form-control' %>
+          </div>
+
+          <div class="col-md-4">
+            <div class="index-condition-button">
+              <%= label_tag :condition, nil, class: 'bold-it' %><br>
+              <%= radio_button_tag :condition, "" %>
+              <%= label_tag :condition_used, "All" %>
+
+              <%= radio_button_tag :condition, "Used" %>
+              <%= label_tag :condition_used, "Used" %>
+
+              <%= radio_button_tag :condition, "New" %>
+              <%= label_tag :condition_new, "New" %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-3 index-search-button">
+        <%= button_tag(type: 'submit', class: 'btn btn-warning btn-block') do %>
+          <span class="glyphicon glyphicon-search"></span> Search
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+
+<hr>
+
+<div class="text-center">
+  <% if @ads.empty? %>
+  <h4>No record found. Please try again.</h4>
+  <% end %>
+</div>
+
+<div class="row">
+  <% @ads.each do |ad| %>
+    <% next if ad.invalid? %>
+    <div class="col-md-6 index-ad">
+      <div class="row">
+        <div class="col-md-4">
+          <%= link_to ad_path(ad) do %>
+            <% if ad.photos.empty? %>
+              <%= image_tag("http://placehold.it/150x150") %>
+            <% else %>
+              <%= image_tag(ad.photos.first.url.to_s, size: '150x150') %>
+            <% end %>
+          <% end %>
+        </div>
+
+        <div class="col-md-5">
+          <%= link_to ad.ad_title, ad_path(ad) %><br>
+          RM <%= ad.price %><br>
+          <span class="glyphicon glyphicon-tag"></span> <%= ad.condition %><br>
+          <span class="glyphicon glyphicon-info-sign"></span> <%= ad.category %>
+        </div>
+
+        <div class="col-md-3">
+          <%= ad.created_at.strftime("%d %b, %I:%M %p ") %><br>
+          <%= ad.item_location %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="text-center">
+    <%= will_paginate @ads, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

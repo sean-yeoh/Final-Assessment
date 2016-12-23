@@ -1,0 +1,27 @@
+<%= form_for @user do |form| %>
+
+  <% if @user.errors.any? %>
+    <div class="errors">
+        <% @user.errors.full_messages.each do |message| %>
+          <p><%= message %></p>
+        <% end %>
+    </div>
+  <% end %>
+
+  <%= render partial: '/users/form', object: form %>
+
+  <div class="form-group">
+    <% if @user.photo.file.nil? %>
+      <%= form.file_field :photo %>
+    <% else %>
+      <%= image_tag(@user.photo.url, alt: "#{@user.username}'s photo", class: 'img-responsive') %><br>
+      <label>
+        <%= form.check_box :remove_photo %>
+        Remove photo
+      </label>
+    <%= form.file_field :photo, class: 'form-group' %>
+    <% end %>
+  </div>
+  <%= form.submit %>
+
+<% end %>

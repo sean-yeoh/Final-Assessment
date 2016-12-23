@@ -13,6 +13,7 @@
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 input[type=number]::-webkit-inner-spin-button,
 input[type=number]::-webkit-outer-spin-button {
@@ -26,4 +27,53 @@ input[type=number]::-webkit-outer-spin-button {
 
 label {
   font-weight: normal;
+}
+
+.ad-title {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 20px;
+  color: red;
+  font-weight: bold;
+}
+
+.bold-it {
+  font-weight: bold;
+}
+
+.index-ad {
+  margin-bottom: 5px;
+  padding-bottom: 5px;
+  border-bottom: 1px solid #d9d9d9;
+  border-right: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+}
+
+.index-condition-button {
+  margin-top: 5px;
+}
+
+.search-form {
+  padding-bottom: 20px;
+  padding-left:10px;
+  padding-right: 10px;
+  background-color: #b3d9ff;
+  .col-md-4 {
+  padding-top: 10px;
+  }
+}
+
+.index-search-button {
+  padding-top: 35px;
+}
+
+.user-pic {
+  padding-top: 10px;
+}
+
+.user-form {
+  padding-bottom: 10px;
 }

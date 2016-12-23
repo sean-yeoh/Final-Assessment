@@ -1,1 +1,98 @@
-show.html.erb
+<div class="row">
+  <div class="col-md-offset-1 col-md-1">
+    <%= link_to 'Back', ads_path, class: 'btn btn-default' %>
+  </div>
+  <div class="col-md-offset-6 col-md-3">
+    <% if @ad.user == current_user || current_user.admin? %>
+      <%= link_to 'Edit', edit_ad_path(@ad), class: 'btn btn-primary' %>
+      <%= link_to 'Delete', ad_path(@ad), class: 'btn btn-danger', method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+  </div>
+</div>
+
+<br>
+
+<div class="row">
+  <div class="col-md-offset-1 col-md-7">
+    <p><%= @ad.category %></p>
+    <p class="ad-title"><%= @ad.ad_title %></p>
+    <%= render 'carousel', :ad => @ad %>
+    <h2><small>Seller Says</small></h2>
+    <p><%= simple_format(@ad.description) %></p>
+
+  </div>
+
+  <div class="col-md-3">
+    <div class="row">
+      <div class="col-md-3" style="line-height: 28px">
+        Price
+      </div>
+      <div class="col-md-9">
+        <span class='price'>RM <%= @ad.price %></span>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-3">
+        Location
+      </div>
+      <div class="col-md-9 bold-it">
+        <%= @ad.item_location %> - <%= @ad.item_area %>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-3">
+        Condition
+      </div>
+      <div class="col-md-9 bold-it">
+        <%= @ad.condition %>
+      </div>
+    </div>
+    <hr>
+
+    <p class="bold-it">Seller details</p>
+
+    <div class="row">
+      <div class="col-md-3">
+        <p>Username</p>
+      </div>
+      <div class="col-md-9 bold-it">
+        <p><%= @ad.user.username %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <p>Type</p>
+      </div>
+      <div class="col-md-9 bold-it">
+        <% if @ad.seller_type == 'Private Seller' %>
+          <p><i class="fa fa-user" aria-hidden="true"></i> <%= @ad.seller_type %></p>
+        <% elsif @ad.seller_type == 'Company' %>
+          <p><i class="fa fa-briefcase" aria-hidden="true"></i> <%= @ad.seller_type %></p>
+        <% else %>
+          <p><i class="fa fa-thumbs-up" aria-hidden="true"></i> <%= @ad.seller_type %></p>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <p>Email</p>
+      </div>
+      <div class="col-md-9 bold-it">
+        <p><%= @ad.user.email %></p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-3">
+        <p>Contact</p>
+      </div>
+      <div class="col-md-9 bold-it">
+        <p><%= @ad.phone_number %></p>
+      </div>
+    </div>
+  </div>
+</div>

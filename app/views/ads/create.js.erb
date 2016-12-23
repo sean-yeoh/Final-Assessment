@@ -1,0 +1,25 @@
+<% unless @ad.valid? %>
+  $('.error-text').remove();
+
+  <% @ad.errors.messages.each_key do |key| %>
+    <% @ad.errors.messages[key].each do |msg| %>
+      $('.<%= key %>_div').append("<p class='error-text text-danger <%= key %>_error'><span class='glyphicon glyphicon-exclamation-sign'></span> <%= key.to_s.humanize %> <%= msg %></p>").hide().fadeIn(100);
+    <% end %>
+  <% end %>
+
+  $('#ad_ad_title').focus(function() {
+    $('.ad_title_error').remove();
+  })
+
+  $('#ad_description').focus(function() {
+    $('.description_error').remove();
+  })
+
+  $('#ad_price').focus(function() {
+    $('.price_error').remove();
+  })
+
+  $('#ad_phone_number').focus(function() {
+    $('.phone_number_error').remove();
+  })
+<% end %>
