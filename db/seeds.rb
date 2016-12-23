@@ -6,7 +6,6 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 ads = Ad.create([
-  {category: "Vehicles", item_location: 'Johor'},
   {category: "Properties", item_location: 'Kedah'},
   {category: "Electronics", item_location: 'Kelantan'},
   {category: "Home & Personal Items", item_location: 'Kuala Lumpur'},
@@ -22,4 +21,4 @@ ads = Ad.create([
   {category: "Others", item_location: 'Terengganu'}
   ])
 
-admin = User.create(username: 'seanyeoh', email: 'admin@admin.com', password: 'admin', role: 1)
+# admin = User.create(username: 'admin', email: 'admin@admin.com', password: 'admin', role: 1)

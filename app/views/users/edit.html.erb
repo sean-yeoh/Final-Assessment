@@ -10,7 +10,9 @@
 
   <%= render partial: '/users/form', object: form %>
 
-  <div class="form-group">
+  <div class="row">
+  <div class="col-md-offset-3 col-md-6 user-form">
+
     <% if @user.photo.file.nil? %>
       <%= form.file_field :photo %>
     <% else %>
@@ -22,6 +24,9 @@
     <%= form.file_field :photo, class: 'form-group' %>
     <% end %>
   </div>
-  <%= form.submit %>
+  </div>
 
+  <div class="col-md-offset-3 col-md-6 text-center">
+    <%= form.submit class: 'btn btn-primary' %>
+  </div>
 <% end %>

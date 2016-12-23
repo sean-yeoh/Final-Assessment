@@ -148,7 +148,7 @@ $(document).on("turbolinks:load", function() {
           }));
         }
         break;
-      case 'Sabah':
+      case 'Sarawak':
         var area = ['Bintulu', 'Kuching', 'Miri', 'Others']
         for (var i = 0; i < area.length; i++) {
           $('#ad_item_area').append($('<option>', {
