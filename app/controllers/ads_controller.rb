@@ -1,4 +1,6 @@
 class AdsController < ApplicationController
+  before_filter :authorize
+
   def index
     @ads = Ad.paginate(:page => params[:page], :per_page => 10).where(nil)
     @categories = Ad.order(:id).pluck(:category).uniq.sort
